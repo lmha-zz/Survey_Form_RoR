@@ -1,0 +1,31 @@
+<%= form_for(@survey) do |s| %>
+  <% if @survey.errors.any? %>
+    <div>
+      <h2><%= pluralize(@survey.errors.count, "Error") %> with making this Survey:</h2>
+      <ul>
+        <% @survey.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">  
+    <%= s.label :name %>
+    <%= s.text_field :name %>
+  </div>
+  <div class="field">
+    <%= s.label :location %>
+    <%= s.select(:location, options_for_select([['Mountain View, CA', 'Mountain View, CA'], ['Bellevue, WA', 'Bellevue, WA']], 1) ) %>
+  </div>
+  <div class="field">
+    <%= s.label :language %>
+    <%= s.select(:language, options_for_select([['PHP', 'PHP'], ['JavaScript', 'JavaScript'], ['Ruby', 'Ruby'], ['Python', 'Python']], 1) )%>
+  </div>
+  <div class="field">
+    <%= s.label :comment %>
+    <%= s.text_area :comment %>
+  </div>
+  <div class="actions">
+    <%= s.submit %>
+  </div>
+<% end %>
